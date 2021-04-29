@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type = "text/css" href="style.css">
+    <script src = "berlin.js"> </script>
+    <title>My Profile</title>
+</head>
+
+
+<body id="profile">
+    <header class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#box2-container">About Me</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+        <li><a href="dairy.html" >Dairy</a></li>
+    </header>
+
+<div class="container">
+    <aside class="container_sidebar">
+        <img src="image/profilefoto.jpg" id = "profileimage">
+        <p class="text">E-Mail:	<br>tanggongmingyue@outlook.com</p>
+        <p class="text">Mobil:	49|163|0236977</p>
+        <a href="https://www.linkedin.com/in/gongmingyue-tang/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+    </aside>
+
+    <section class="container_left">
+        <h2 class="subtitle">Practical Experience</h2>
+        <h3 class="subsubtitle">October 2019 – December 2019</h3>
+            <p class="text">Intern
+            <br><br>empirica ag, Berlin</p>
+             
+        <h3 class="subsubtitle">April 2019 – June 2019</h3>  
+            <p class="text">Remote Volunteering
+            <br><br>The Nature Conservancy (TNC) China 
+
+    </section>
+    <section class="container_right">
+        <h2 class="subtitle">Education</h2>
+        <h3 class="subsubtitle">2020 – today</h3>
+            <p class="text">ERASMUS M.Sc. Cartography
+            <br><br>TU München, TU Wien, TU Dresden und Universität Twente</p>
+             
+        <h3 class="subsubtitle"> 2017 – 2020</h3>  
+            <p class="text">B.Sc. Geographie (Note: 1,8)
+            <br><br>Humboldt-Universität zu Berlin 
+            
+             
+        <h3 class="subsubtitle"> 2011 – 2017</h3>     
+            <p class="text">
+            Chengdu Experimental Foreign Languages School
+            </p>
+    </section>
+</div>
+
+<div class="container2">
+    <section class="container2_left">
+        <h3> My university educations </h3>
+        <div class="education_map">
+            <div class="education_marker" id="marker1"></div>
+            <div class="education_marker" id="marker2"></div>
+            <div class="education_marker" id="marker3"></div>
+            <div class="education_marker" id="marker4"></div>
+            <div class="education_area"></div>
+            <div class="triangle"></div>
+        </div>
+
+    </section>
+
+    <section class="container2_right">
+        <h3> European Cities I've Been To </h3>
+        <div id="map"></div>
+    
+        <script>
+        
+        var light = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        minZoom: 2,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoidGFuZ2dvbmciLCJhIjoiY2tqc2pxYzd6MWgycjJzbDE2YTAxamNsbSJ9.U8-AXdKJVI16xv55z70gnA'
+        });
+
+        var streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        minZoom: 2,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoidGFuZ2dvbmciLCJhIjoiY2tqc2pxYzd6MWgycjJzbDE2YTAxamNsbSJ9.U8-AXdKJVI16xv55z70gnA'
+        });
+
+        var map = L.map('map', {
+            center:[50.852893, 9.026149],
+            zoom:5,
+            layers: [light, streets]
+        });
+        
+        var baseMaps = {
+            "Light": light,
+            "Streets": streets
+        };
+
+        L.control.layers(baseMaps).addTo(map);
+
+
+        let icon = L.icon({iconUrl: 'icon/icon_places.png',iconSize: [22, 34.8],iconAnchor: [11, 34.8]});
+        let pos1 = [46.68732388822982, 7.8617405878526965];
+        let Interlaken = L.marker(pos1, {title: "Interlaken",icon: icon});
+        Interlaken.addTo(map);
+
+        let pos2 = [52.5184698943366, 13.39377621672944];
+        let Berlin = L.marker(pos2, {title: "Berlin",icon: icon});
+        Berlin.addTo(map);
+
+        let pos3 = [48.132014084620444, 11.582292171061209];
+        let Munich = L.marker(pos3, {title: "Munich",icon: icon});
+        Munich.addTo(map);
+
+        let pos4 = [48.20860171119665, 16.37215727823182];
+        let Vienna = L.marker(pos4, {title: "Vienna",icon: icon});
+        Vienna.addTo(map);
+
+        let pos5 = [47.39854637249021, 19.274841867983564];
+        let Budapest = L.marker(pos5, {title: "Budapest",icon: icon});
+        Budapest.addTo(map);
+
+        let pos6 = [50.08083653959119, 14.439715511622653];
+        let Prague = L.marker(pos6, {title: "Prague",icon: icon});
+        Prague.addTo(map);
+
+        let pos7 = [48.85137379643025, 2.3590487738082495];
+        let Paris = L.marker(pos7, {title: "Paris",icon: icon});
+        Paris.addTo(map);
+
+        let pos8 = [53.54274269789472, 9.978601210977825];
+        let Hamburg = L.marker(pos8, {title: "Hamburg",icon: icon});
+        Hamburg.addTo(map);
+
+        var polygon = L.polygon([
+        [48.98471700965597, 8.34553631669859],
+        [47.59613113270789, 7.58630558439855],
+        [47.749448426660734, 8.313501346034773],
+        [48.883676292026614, 8.812455245359638]
+        ]).addTo(map);
+
+        
+
+        var myLayer = L.geoJSON().addTo(map);
+        myLayer.addData(geojsonFeature);
+
+        Berlin.bindPopup('<h3>  Berlin  </h3> <img src=\'image/berlin.jpg\' alt=\'Berliner Dom\' class=\'popupImage\'>', {minWidth:150});
+        Hamburg.bindPopup('<h3>  Hamburg </h3> <img src=\'image/hamburg.jpg\' alt=\'Hamburg Harbor\' class=\'popupImage\'>', {minWidth:150});
+        Budapest.bindPopup('<h3> Budapest </h3> <img src=\'image/budapest.jpg\' alt=\'Budapest Palace\' class=\'popupImage\'>', {minWidth:150});
+        Interlaken.bindPopup('<h3>Interlaken</h3> <img src=\'image/interlake.jpg\' alt=\'Interlaken Mountain\' class=\'popupImage\'>', {minWidth:150});
+        Vienna.bindPopup('<h3>  Vienna  </h3> <img src=\'image/wien.jpg\' alt=\'Vienna West Station\' class=\'popupImage\'>', {minWidth:150});
+        Paris.bindPopup('<h3>  Paris   </h3> <img src=\'image/paris.jpg\' alt=\'Notre-Dame de Paris\' class=\'popupImage\'>', {minWidth:150});
+        Prague.bindPopup('<h3>  Prague  </h3> <img src=\'image/prague.jpg\' alt=\'Prague Church\' class=\'popupImage\'>', {minWidth:150});
+        Munich.bindPopup('<h3>  Munich  </h3> <img src=\'image/munich.jpg\' alt=\'Munich\' class=\'popupImage\'>', {minWidth:150});
+        polygon.bindPopup('<h3>Schwarzwald</h3> <img src=\'image/schwarzwald.jpg\' alt=\'Kirsch Schnitten\' class=\'popupImage\'>', {minWidth:150})
+
+
+
+        </script>
+    </section>
+</div>
+
+<div class = container>
+    <h3> For Bonus <span>&#127775;&#128077;</span> </h3>
+    <ul id="bonus">
+    <li class="text"> Design my own map and icons </li>
+    <li class="text"> Add layer groups to the second map, so the users can use the layers control different base maps </li>
+    <li class="text"> Add geoJSON file to show the districts of Berlin </li>
+    </ul>
+</div>
+
+
+<footer > Background image by <a href="https://www.flickr.com/photos/skyseeker/">Skyseeker
+</a> 
+on <a href="https://flic.kr/p/54z6C">
+    Flickr</a>
+</footer>
+</body>
+</html>
